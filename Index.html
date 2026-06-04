@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fonoaudióloga Thamara Abadía | Terapia de Lenguaje y Comunicación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+ 
+<style>
+  :root {
+    --teal: #2d9b8a;
+    --teal-light: #4ebdad;
+    --blush: #f5b8c4;
+    --lavender: #c4b8e8;
+    --sky: #b8dff5;
+    --cream: #fdf9f7;
+    --navy: #1e2d3d;
+    --text: #3a3a3a;
+    --text-light: #7a7a8a;
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+ 
+  /* ── WATERCOLOR BLOBS ── */
+  .blob {
+    position: absolute;
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    filter: blur(40px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 6%;
+    background: rgba(253,249,247,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(45,155,138,0.1);
+  }
+ 
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+  }
+  .nav-logo span { color: var(--teal); }
+ 
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+ 
+  .nav-cta {
+    background: var(--teal);
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--teal-light) !important; color: #fff !important; }
+ 
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 6% 80px;
+    position: relative;
+    overflow: hidden;
+    gap: 60px;
+  }
+ 
+  .hero .blob-1 {
+    width: 500px; height: 500px;
+    background: var(--blush);
+    top: 5%; right: -100px;
+  }
+  .hero .blob-2 {
+    width: 350px; height: 350px;
+    background: var(--lavender);
+    bottom: 10%; right: 30%;
+  }
+  .hero .blob-3 {
+    width: 300px; height: 300px;
+    background: var(--sky);
+    top: 30%; right: 5%;
+  }
+ 
+  .hero-text { position: relative; z-index: 2; }
+ 
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(45,155,138,0.1);
+    color: var(--teal);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--teal);
+    border-radius: 50%;
+  }
+ 
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+ 
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    max-width: 420px;
+    margin-bottom: 36px;
+  }
+ 
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+ 
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--teal);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(45,155,138,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(45,155,138,0.4);
+  }
+ 
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid rgba(45,155,138,0.35);
+    color: var(--teal);
+    padding: 13px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 400;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover {
+    background: rgba(45,155,138,0.06);
+    border-color: var(--teal);
+  }
+ 
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 44px; flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--navy);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 4px;
+    letter-spacing: 0.03em;
+  }
+ 
+  /* ── HERO IMAGE ── */
+  .hero-image-wrap {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center;
+  }
+  .hero-img-card {
+    position: relative;
+    width: min(380px, 100%);
+  }
+  .hero-img-card img {
+    width: 100%;
+    border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%;
+    display: block;
+    position: relative; z-index: 2;
+    filter: drop-shadow(0 20px 50px rgba(45,155,138,0.2));
+  }
+ 
+  .rating-bubble {
+    position: absolute;
+    bottom: 10%; left: -30px;
+    background: white;
+    border-radius: 16px;
+    padding: 12px 18px;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 3;
+    animation: float 3s ease-in-out infinite;
+  }
+  .rating-bubble .stars { color: #FFB800; font-size: 0.85rem; }
+  .rating-bubble .rating-text { font-size: 0.82rem; }
+  .rating-bubble .rating-text strong { display: block; font-size: 0.95rem; }
+ 
+  .location-bubble {
+    position: absolute;
+    top: 10%; right: -20px;
+    background: white;
+    border-radius: 14px;
+    padding: 10px 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 3;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    animation: float 3s ease-in-out infinite 1.5s;
+  }
+  .location-bubble strong { display: block; color: var(--navy); font-size: 0.85rem; }
+ 
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+ 
+  /* ── SECTION SHARED ── */
+  section { padding: 90px 6%; }
+ 
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    max-width: 520px;
+  }
+ 
+  /* ── SERVICES ── */
+  .services { background: #fff; }
+ 
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+    margin-top: 52px;
+  }
+ 
+  .service-card {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 1px solid rgba(45,155,138,0.08);
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(45,155,138,0.12);
+  }
+ 
+  .service-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .icon-teal { background: rgba(45,155,138,0.12); }
+  .icon-blush { background: rgba(245,184,196,0.3); }
+  .icon-lavender { background: rgba(196,184,232,0.3); }
+  .icon-sky { background: rgba(184,223,245,0.4); }
+ 
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .service-card p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--text-light);
+  }
+ 
+  /* ── ABOUT ── */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+ 
+  .about-img-wrap { position: relative; }
+  .about-img-wrap img {
+    width: 100%;
+    border-radius: 24px;
+    display: block;
+  }
+ 
+  .about-accent {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 120px; height: 120px;
+    background: linear-gradient(135deg, var(--blush), var(--lavender));
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: -1;
+  }
+ 
+  .credentials {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-top: 32px;
+  }
+  .credential-item {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+  }
+  .credential-item::before {
+    content: '✓';
+    width: 26px; height: 26px;
+    background: rgba(45,155,138,0.12);
+    color: var(--teal);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+ 
+  /* ── REVIEWS ── */
+  .reviews { background: #fff; }
+ 
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 52px;
+  }
+ 
+  .review-card {
+    background: var(--cream);
+    border-radius: 18px;
+    padding: 28px;
+    border: 1px solid rgba(45,155,138,0.08);
+    transition: transform 0.2s;
+  }
+  .review-card:hover { transform: translateY(-3px); }
+ 
+  .review-stars { color: #FFB800; font-size: 0.85rem; margin-bottom: 14px; }
+  .review-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text);
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+  .review-author {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .review-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blush), var(--lavender));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--navy);
+  }
+  .review-name { font-size: 0.88rem; font-weight: 500; color: var(--navy); }
+  .review-date { font-size: 0.76rem; color: var(--text-light); margin-top: 2px; }
+ 
+  .reviews-link {
+    display: block;
+    text-align: center;
+    margin-top: 36px;
+    color: var(--teal);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s;
+  }
+  .reviews-link:hover { opacity: 0.7; }
+ 
+  /* ── CTA STRIP ── */
+  .cta-strip {
+    background: linear-gradient(135deg, var(--navy) 0%, #2d4a60 100%);
+    color: #fff;
+    text-align: center;
+    padding: 80px 6%;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-strip .blob {
+    background: var(--teal);
+    opacity: 0.15;
+  }
+  .cta-strip h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    margin-bottom: 14px;
+    position: relative; z-index: 1;
+  }
+  .cta-strip p {
+    font-size: 1rem;
+    opacity: 0.75;
+    margin-bottom: 36px;
+    position: relative; z-index: 1;
+  }
+  .cta-strip-actions {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .btn-white {
+    background: #fff;
+    color: var(--navy);
+    padding: 14px 30px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: transform 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); }
+  .btn-outline-white {
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: #fff;
+    padding: 13px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s;
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+ 
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 52px;
+  }
+ 
+  .contact-items { display: flex; flex-direction: column; gap: 20px; }
+ 
+  .contact-item {
+    display: flex; align-items: center; gap: 18px;
+    text-decoration: none;
+    padding: 18px 22px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(45,155,138,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: var(--text);
+  }
+  .contact-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 24px rgba(45,155,138,0.1);
+  }
+ 
+  .contact-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .contact-label { font-size: 0.78rem; color: var(--text-light); margin-bottom: 2px; letter-spacing: 0.04em; }
+  .contact-value { font-size: 0.95rem; font-weight: 500; color: var(--navy); }
+ 
+  .map-embed {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(45,155,138,0.1);
+    height: 380px;
+  }
+  .map-embed iframe {
+    width: 100%; height: 100%; border: 0; display: block;
+  }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 30px 6%;
+    font-size: 0.82rem;
+  }
+  footer a { color: var(--teal-light); text-decoration: none; }
+ 
+  /* ── WHATSAPP FLOAT ── */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+    z-index: 200;
+    text-decoration: none;
+    transition: transform 0.2s;
+    animation: pulse-wa 2.5s ease-in-out infinite;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); }
+  .whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
+ 
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
+    50% { box-shadow: 0 6px 32px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.08); }
+  }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+    .hero-image-wrap { order: -1; }
+    .hero-stats { justify-content: center; }
+    .hero-sub { margin: 0 auto 36px; }
+    .hero-actions { justify-content: center; }
+    .about { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Thamara <span>Abadía</span></div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#reviews">Reseñas</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="XXX" target="_blank" class="nav-cta">Agenda tu cita</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+ 
+  <div class="hero-text">
+    <div class="hero-badge">Fonoaudióloga certificada · Mosquera, Colombia</div>
+    <h1>Tu voz tiene el poder<br>de <em>transformar</em><br>tu vida.</h1>
+    <p class="hero-sub">Terapia de pronunciación, lenguaje y comunicación efectiva para adultos. Juntos trabajaremos para que tu voz transmita lo mejor de ti.</p>
+    <div class="hero-actions">
+      <a href="https://xxx" target="_blank" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.982 0C5.373 0 .001 5.372.001 11.981c0 2.09.549 4.048 1.507 5.747L0 24l6.432-1.686A11.945 11.945 0 0011.982 24c6.609 0 11.981-5.372 11.981-11.981C23.963 5.372 18.591 0 11.982 0zm0 21.818a9.836 9.836 0 01-5.012-1.371l-.36-.214-3.72.976.993-3.634-.234-.374a9.84 9.84 0 01-1.505-5.239c0-5.435 4.42-9.855 9.855-9.855 5.434 0 9.854 4.42 9.854 9.855 0 5.434-4.42 9.856-9.871 9.856z"/></svg>
+        Agendar por WhatsApp
+      </a>
+      <a href="https://www.doctoralia.co" target="_blank" class="btn-secondary">
+        🗓 Ver en Doctoralia
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">5.0</span>
+        <div class="stat-label">⭐ Google Rating</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">12+</span>
+        <div class="stat-label">Reseñas verificadas</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <div class="stat-label">Enfoque personalizado</div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="hero-image-wrap">
+    <div class="hero-img-card">
+      <!-- REEMPLAZA src con la ruta real de la foto -->
+      <img src="Capture.JPG" alt="Fonoaudióloga Thamara Abadía" onerror="this.style.background='linear-gradient(135deg,#f5b8c4,#c4b8e8)';this.style.height='400px';this.removeAttribute('src')">
+      <div class="rating-bubble">
+        <div>
+          <div class="stars">★★★★★</div>
+          <div class="rating-text"><strong>5.0 / 5.0</strong>Google Reviews</div>
+        </div>
+      </div>
+      <div class="location-bubble">
+        <strong>📍 Mosquera, Cundinamarca</strong>
+        Colombia
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SERVICES -->
+<section id="servicios" class="services">
+  <div class="section-label">Servicios</div>
+  <h2 class="section-title">¿En qué puedo<br>ayudarte?</h2>
+  <p class="section-sub">Terapias diseñadas para adultos que quieren comunicarse con mayor claridad, confianza y seguridad.</p>
+ 
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon icon-teal">🗣️</div>
+      <h3>Terapia de Pronunciación</h3>
+      <p>Mejora tu articulación y habla con más claridad y precisión en cualquier contexto personal o profesional.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon icon-blush">💬</div>
+      <h3>Comunicación Efectiva</h3>
+      <p>Expresa tus ideas con seguridad y fluidez, adaptando tu mensaje a cada entorno y audiencia.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon icon-lavender">👥</div>
+      <h3>Confianza al Hablar</h3>
+      <p>Desarrolla tu seguridad al comunicarte y mejora tus relaciones personales y profesionales.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon icon-sky">🎯</div>
+      <h3>Plan Personalizado</h3>
+      <p>Terapias 100% adaptadas a tus necesidades, objetivos y ritmo de aprendizaje.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon icon-teal">👂</div>
+      <h3>Higiene Auditiva</h3>
+      <p>Lavado de oídos profesional y orientación sobre el cuidado auditivo preventivo y correctivo.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon icon-blush">🧠</div>
+      <h3>Terapia Cognitivo-Comunicativa</h3>
+      <p>Atención a dificultades de memoria, atención y comprensión que afectan la comunicación diaria.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section id="sobre-mi">
+  <div class="about">
+    <div class="about-img-wrap">
+      <img src="Capture.JPG" alt="Thamara Abadía" onerror="this.style.background='linear-gradient(135deg,#f5b8c4,#c4b8e8)';this.style.height='420px';this.removeAttribute('src')">
+      <div class="about-accent"></div>
+    </div>
+    <div>
+      <div class="section-label">Sobre mí</div>
+      <h2 class="section-title">Hola, soy<br>Thamara Abadía</h2>
+      <p style="color: var(--text-light); line-height: 1.75; margin-bottom: 20px;">
+        Soy fonoaudióloga especializada en comunicación para adultos. Mi pasión es ayudarte a descubrir el poder de tu voz y a comunicarte con claridad, confianza y autenticidad.
+      </p>
+      <p style="color: var(--text-light); line-height: 1.75; margin-bottom: 28px;">
+        Estoy aquí para acompañarte en cada paso de tu proceso. Juntos trabajaremos en tu pronunciación, fluidez y claridad, para que tu voz transmita lo mejor de ti.
+      </p>
+      <div class="credentials">
+        <div class="credential-item">Fonoaudióloga titulada y certificada</div>
+        <div class="credential-item">Especialización en comunicación para adultos</div>
+        <div class="credential-item">Atención presencial en Mosquera, Cundinamarca</div>
+        <div class="credential-item">Profesional con perspectiva LGBTQ+ friendly</div>
+        <div class="credential-item">Consulta también disponible por WhatsApp</div>
+      </div>
+      <div style="margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="https://wa.me/xxx" target="_blank" class="btn-primary">Agendar cita</a>
+        <a href="https://portafolio-comunicacion.my.canva.site" target="_blank" class="btn-secondary">Ver portafolio</a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- REVIEWS -->
+<section id="reviews" class="reviews">
+  <div class="section-label">Reseñas</div>
+  <h2 class="section-title">Lo que dicen<br>mis pacientes</h2>
+  <p class="section-sub">Reseñas reales de Google. Calificación 5.0 estrellas con 12 valoraciones verificadas.</p>
+ 
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Muy buena doctora, puntual y con disposición a ayudar."</p>
+      <div class="review-author">
+        <div class="review-avatar">JP</div>
+        <div>
+          <div class="review-name">Juan Pablo Ortiz Acosta</div>
+          <div class="review-date">Hace 2 días</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Se la super recomiendo, muy profesional y tiene mucho amor por su profesión."</p>
+      <div class="review-author">
+        <div class="review-avatar">MV</div>
+        <div>
+          <div class="review-name">Marbelys Velasquez</div>
+          <div class="review-date">Hace 2 días</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Su orientación ha contribuido significativamente a mi desarrollo comunicativo. La recomiendo ampliamente por su calidad humana y excelente labor profesional."</p>
+      <div class="review-author">
+        <div class="review-avatar">AD</div>
+        <div>
+          <div class="review-name">Angel Durand</div>
+          <div class="review-date">Hace 5 días</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Un excelente servicio y muy atenta como profesional."</p>
+      <div class="review-author">
+        <div class="review-avatar">HQ</div>
+        <div>
+          <div class="review-name">Hersilia Quiroga</div>
+          <div class="review-date">Hace 5 días</div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <a href="https://g.page/r/review" target="_blank" class="reviews-link">
+    Ver todas las reseñas en Google Maps →
+  </a>
+</section>
+ 
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <div class="blob" style="width:400px;height:400px;top:-100px;right:-100px;"></div>
+  <div class="blob" style="width:300px;height:300px;bottom:-80px;left:-80px;"></div>
+  <h2>Tu voz importa.<br>Hazte escuchar.</h2>
+  <p>Da el primer paso hacia una comunicación más clara, fluida y segura.</p>
+  <div class="cta-strip-actions">
+    <a href="https://wa.me/xxx" target="_blank" class="btn-white">
+      💬 WhatsApp · XXX
+    </a>
+    <a href="mailto:xxx@xxx.xxx" class="btn-outline-white">
+      ✉️ Enviar correo
+    </a>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section id="contacto">
+  <div class="section-label">Contacto</div>
+  <h2 class="section-title">Encuéntrame</h2>
+ 
+  <div class="contact-grid">
+    <div class="contact-items">
+      <a href="https://wa.me/xxx" target="_blank" class="contact-item">
+        <div class="contact-icon icon-teal">📱</div>
+        <div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value">+xxx</div>
+        </div>
+      </a>
+      <a href="https://www.doctoralia.co" target="_blank" class="contact-item">
+        <div class="contact-icon icon-blush">🗓</div>
+        <div>
+          <div class="contact-label">Doctoralia</div>
+          <div class="contact-value">Agenda tu cita online</div>
+        </div>
+      </a>
+      <a href="mailto:xxx@xxx.xxx" class="contact-item">
+        <div class="contact-icon icon-lavender">✉️</div>
+        <div>
+          <div class="contact-label">Correo electrónico</div>
+          <div class="contact-value">xxx@xxx.xxx</div>
+        </div>
+      </a>
+      <a href="https://maps.google.com/?q=Cl+10+%231A-18,+Mosquera,+Cundinamarca" target="_blank" class="contact-item">
+        <div class="contact-icon icon-sky">📍</div>
+        <div>
+          <div class="contact-label">Dirección</div>
+          <div class="contact-value">Direccion</div>
+        </div>
+      </a>
+      <a href="https://portafolio-comunicacion.my.canva.site" target="_blank" class="contact-item">
+        <div class="contact-icon icon-teal">🌐</div>
+        <div>
+          <div class="contact-label">Portafolio</div>
+          <div class="contact-value">portafolio-comunicación.my.canva.site</div>
+        </div>
+      </a>
+    </div>
+ 
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.4!2d-74.2297!3d4.7069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f90c1234abcde%3A0x0!2sCl+10+%231A-18%2C+Mosquera%2C+Cundinamarca!5e0!3m2!1ses!2sco!4v1"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Especialidad Nombre Apellido · Ciudad, departamento, Pais</p>
+  <p style="margin-top: 6px;">Diseñado con ♡ · <a href="https://wa.me/XXX">+XXX</a></p>
+</footer>
+ 
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/"xxx" target="_blank" class="whatsapp-float" title="Chatea por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+ 
+</body>
+</html>
